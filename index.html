@@ -7,29 +7,488 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Soccer Training Questionnaire</h1>
-    <form data-netlify="true" method="POST">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+    <div class="container">
+        <h1>Soccer Training Questionnaire</h1>
+        <p class="intro">Please tick the box that best applies to you for each question, unless asked to write in details. For questions where you can select multiple options, tick as many as apply. Some sections ask you to rate skills or concepts on a scale of 1–5 (1 = Low, 5 = High). This helps us understand your training experiences, skills, and preferences to improve our program. Your input is valuable—thank you for participating!</p>
 
-        <label for="phone">Phone Number:</label>
-        <input type="tel" id="phone" name="phone" required><br><br>
+        <form data-netlify="true" method="POST" name="questionnaire">
+            <!-- Personal Information -->
+            <section>
+                <h2>Personal Information</h2>
+                <label for="first-name">First Name:</label>
+                <input type="text" id="first-name" name="first-name" required>
 
-        <label for="position">Position(s) you play (select all that apply):</label><br>
-        <input type="checkbox" name="position" value="GK"> GK<br>
-        <input type="checkbox" name="position" value="CB"> CB<br>
-        <input type="checkbox" name="position" value="RB"> RB<br>
-        <!-- You can add more positions like "LB", "CM", etc., if needed -->
+                <label for="last-name">Last Name:</label>
+                <input type="text" id="last-name" name="last-name" required>
 
-        <label for="experience">How long have you been playing soccer?</label>
-        <select id="experience" name="experience">
-            <option value="less than 1 year">Less than 1 year</option>
-            <option value="1-3 years">1-3 years</option>
-            <option value="3-5 years">3-5 years</option>
-            <option value="5+ years">5+ years</option>
-        </select><br><br>
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" required>
+            </section>
 
-        <button type="submit">Submit</button>
-    </form>
+            <!-- Section 1: Playing Information -->
+            <section>
+                <h2>Section 1: Playing Information</h2>
+                <label>1. What position(s) do you play? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="pos-gk" name="position" value="GK"> <label for="pos-gk">GK (Goalkeeper)</label><br>
+                    <input type="checkbox" id="pos-cb" name="position" value="CB"> <label for="pos-cb">CB (Center-back)</label><br>
+                    <input type="checkbox" id="pos-rb" name="position" value="RB"> <label for="pos-rb">RB (Right-back)</label><br>
+                    <input type="checkbox" id="pos-lb" name="position" value="LB"> <label for="pos-lb">LB (Left-back)</label><br>
+                    <input type="checkbox" id="pos-cdm" name="position" value="CDM"> <label for="pos-cdm">CDM (Central Defensive Midfielder)</label><br>
+                    <input type="checkbox" id="pos-cm" name="position" value="CM"> <label for="pos-cm">CM (Central Midfielder)</label><br>
+                    <input type="checkbox" id="pos-cam" name="position" value="CAM"> <label for="pos-cam">CAM (Central Attacking Midfielder)</label><br>
+                    <input type="checkbox" id="pos-rm" name="position" value="RM"> <label for="pos-rm">RM (Right Midfielder)</label><br>
+                    <input type="checkbox" id="pos-lm" name="position" value="LM"> <label for="pos-lm">LM (Left Midfielder)</label><br>
+                    <input type="checkbox" id="pos-rw" name="position" value="RW"> <label for="pos-rw">RW (Right Winger)</label><br>
+                    <input type="checkbox" id="pos-lw" name="position" value="LW"> <label for="pos-lw">LW (Left Winger)</label><br>
+                    <input type="checkbox" id="pos-st" name="position" value="ST"> <label for="pos-st">ST (Striker)</label><br>
+                    <input type="checkbox" id="pos-other" name="position" value="Other"> <label for="pos-other">Other (specify):</label>
+                    <input type="text" name="position-other" class="inline-input">
+                </div>
+
+                <label for="experience">2. How long have you been playing soccer? (Tick one)</label>
+                <select id="experience" name="experience" required>
+                    <option value="">Select an option</option>
+                    <option value="less than 1 year">Less than 1 year</option>
+                    <option value="1-3 years">1–3 years</option>
+                    <option value="3-5 years">3–5 years</option>
+                    <option value="5+ years">5+ years</option>
+                </select>
+
+                <label for="age">3. What is your age? (Write your age in years)</label>
+                <input type="number" id="age" name="age" required>
+
+                <label for="height">4. What is your height? (Specify in feet and inches)</label>
+                <div class="height-input">
+                    <input type="number" id="height-feet" name="height-feet" placeholder="Feet" required min="0">
+                    <input type="number" id="height-inches" name="height-inches" placeholder="Inches" required min="0" max="11">
+                </div>
+
+                <label for="weight">5. What is your weight? (Specify in kg)</label>
+                <input type="number" id="weight" name="weight" required min="0">
+
+                <label for="skill-level">6. What is your current skill level? (Tick one)</label>
+                <select id="skill-level" name="skill-level" required>
+                    <option value="">Select an option</option>
+                    <option value="Beginner">Beginner</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                    <option value="Elite">Elite</option>
+                </select>
+
+                <label for="learning-style">7. How do you learn best? (Tick one)</label>
+                <select id="learning-style" name="learning-style" required>
+                    <option value="">Select an option</option>
+                    <option value="Visual">Visual demonstrations (e.g., videos, live demos)</option>
+                    <option value="Verbal">Verbal instructions (e.g., explanations)</option>
+                    <option value="Hands-on">Hands-on practice (e.g., doing drills)</option>
+                </select>
+            </section>
+
+            <!-- Section 2: Technical Skills -->
+            <section>
+                <h2>Section 2: Technical Skills</h2>
+                <label>8. Rate your confidence in the following technical skills (1 = Low, 5 = High):</label>
+                <div class="rating-group">
+                    <p>Dribbling:</p>
+                    <input type="radio" id="dribbling-1" name="dribbling" value="1" required> <label for="dribbling-1">1</label>
+                    <input type="radio" id="dribbling-2" name="dribbling" value="2"> <label for="dribbling-2">2</label>
+                    <input type="radio" id="dribbling-3" name="dribbling" value="3"> <label for="dribbling-3">3</label>
+                    <input type="radio" id="dribbling-4" name="dribbling" value="4"> <label for="dribbling-4">4</label>
+                    <input type="radio" id="dribbling-5" name="dribbling" value="5"> <label for="dribbling-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>Passing:</p>
+                    <input type="radio" id="passing-1" name="passing" value="1" required> <label for="passing-1">1</label>
+                    <input type="radio" id="passing-2" name="passing" value="2"> <label for="passing-2">2</label>
+                    <input type="radio" id="passing-3" name="passing" value="3"> <label for="passing-3">3</label>
+                    <input type="radio" id="passing-4" name="passing" value="4"> <label for="passing-4">4</label>
+                    <input type="radio" id="passing-5" name="passing" value="5"> <label for="passing-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>Shooting:</p>
+                    <input type="radio" id="shooting-1" name="shooting" value="1" required> <label for="shooting-1">1</label>
+                    <input type="radio" id="shooting-2" name="shooting" value="2"> <label for="shooting-2">2</label>
+                    <input type="radio" id="shooting-3" name="shooting" value="3"> <label for="shooting-3">3</label>
+                    <input type="radio" id="shooting-4" name="shooting" value="4"> <label for="shooting-4">4</label>
+                    <input type="radio" id="shooting-5" name="shooting" value="5"> <label for="shooting-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>First touch:</p>
+                    <input type="radio" id="first-touch-1" name="first-touch" value="1" required> <label for="first-touch-1">1</label>
+                    <input type="radio" id="first-touch-2" name="first-touch" value="2"> <label for="first-touch-2">2</label>
+                    <input type="radio" id="first-touch-3" name="first-touch" value="3"> <label for="first-touch-3">3</label>
+                    <input type="radio" id="first-touch-4" name="first-touch" value="4"> <label for="first-touch-4">4</label>
+                    <input type="radio" id="first-touch-5" name="first-touch" value="5"> <label for="first-touch-5">5</label>
+                </div>
+
+                <label>9. Which technical drills have you done in the past? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="drill-dribbling" name="technical-drills" value="Dribbling through cones"> <label for="drill-dribbling">Dribbling through cones</label><br>
+                    <input type="checkbox" id="drill-passing" name="technical-drills" value="Passing triangles"> <label for="drill-passing">Passing triangles</label><br>
+                    <input type="checkbox" id="drill-shooting" name="technical-drills" value="Shooting accuracy drills"> <label for="drill-shooting">Shooting accuracy drills</label><br>
+                    <input type="checkbox" id="drill-first-touch" name="technical-drills" value="First touch control drills"> <label for="drill-first-touch">First touch control drills</label><br>
+                    <input type="checkbox" id="drill-other" name="technical-drills" value="Other"> <label for="drill-other">Other (specify):</label>
+                    <input type="text" name="technical-drills-other" class="inline-input">
+                </div>
+
+                <label for="weaker-foot">10. How often do you practice with your weaker foot? (Tick one)</label>
+                <select id="weaker-foot" name="weaker-foot" required>
+                    <option value="">Select an option</option>
+                    <option value="Every session">Every session</option>
+                    <option value="Sometimes">Sometimes</option>
+                    <option value="Never">Never</option>
+                </select>
+
+                <label for="favorite-skill">11. Which technical skill do you enjoy training most? (Tick one)</label>
+                <select id="favorite-skill" name="favorite-skill" required>
+                    <option value="">Select an option</option>
+                    <option value="Dribbling">Dribbling</option>
+                    <option value="Passing">Passing</option>
+                    <option value="Shooting">Shooting</option>
+                    <option value="First touch">First touch</option>
+                </select>
+            </section>
+
+            <!-- Section 3: Tactical Understanding -->
+            <section>
+                <h2>Section 3: Tactical Understanding</h2>
+                <label>12. Rate your understanding of the following tactical concepts (1 = Poor, 5 = Excellent):</label>
+                <div class="rating-group">
+                    <p>Positioning:</p>
+                    <input type="radio" id="positioning-1" name="positioning" value="1" required> <label for="positioning-1">1</label>
+                    <input type="radio" id="positioning-2" name="positioning" value="2"> <label for="positioning-2">2</label>
+                    <input type="radio" id="positioning-3" name="positioning" value="3"> <label for="positioning-3">3</label>
+                    <input type="radio" id="positioning-4" name="positioning" value="4"> <label for="positioning-4">4</label>
+                    <input type="radio" id="positioning-5" name="positioning" value="5"> <label for="positioning-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>Pressing:</p>
+                    <input type="radio" id="pressing-1" name="pressing" value="1" required> <label for="pressing-1">1</label>
+                    <input type="radio" id="pressing-2" name="pressing" value="2"> <label for="pressing-2">2</label>
+                    <input type="radio" id="pressing-3" name="pressing" value="3"> <label for="pressing-3">3</label>
+                    <input type="radio" id="pressing-4" name="pressing" value="4"> <label for="pressing-4">4</label>
+                    <input type="radio" id="pressing-5" name="pressing" value="5"> <label for="pressing-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>Game reading:</p>
+                    <input type="radio" id="game-reading-1" name="game-reading" value="1" required> <label for="game-reading-1">1</label>
+                    <input type="radio" id="game-reading-2" name="game-reading" value="2"> <label for="game-reading-2">2</label>
+                    <input type="radio" id="game-reading-3" name="game-reading" value="3"> <label for="game-reading-3">3</label>
+                    <input type="radio" id="game-reading-4" name="game-reading" value="4"> <label for="game-reading-4">4</label>
+                    <input type="radio" id="game-reading-5" name="game-reading" value="5"> <label for="game-reading-5">5</label>
+                </div>
+
+                <label>13. Which tactical concepts have you trained? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="tactical-defense" name="tactical-concepts" value="Defensive organization"> <label for="tactical-defense">Defensive organization</label><br>
+                    <input type="checkbox" id="tactical-attack" name="tactical-concepts" value="Attacking patterns"> <label for="tactical-attack">Attacking patterns</label><br>
+                    <input type="checkbox" id="tactical-set-pieces" name="tactical-concepts" value="Set pieces"> <label for="tactical-set-pieces">Set pieces</label><br>
+                    <input type="checkbox" id="tactical-pressing" name="tactical-concepts" value="Pressing/counter-pressing"> <label for="tactical-pressing">Pressing/counter-pressing</label><br>
+                    <input type="checkbox" id="tactical-positional" name="tactical-concepts" value="Positional play"> <label for="tactical-positional">Positional play</label><br>
+                    <input type="checkbox" id="tactical-counter" name="tactical-concepts" value="Counter-attacking"> <label for="tactical-counter">Counter-attacking</label><br>
+                    <input type="checkbox" id="tactical-transitions" name="tactical-concepts" value="Game transitions"> <label for="tactical-transitions">Game transitions</label><br>
+                    <input type="checkbox" id="tactical-other" name="tactical-concepts" value="Other"> <label for="tactical-other">Other (specify):</label>
+                    <input type="text" name="tactical-concepts-other" class="inline-input">
+                </div>
+
+                <label>14. What formations have you played in? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="formation-442" name="formations" value="4-4-2"> <label for="formation-442">4-4-2</label><br>
+                    <input type="checkbox" id="formation-433" name="formations" value="4-3-3"> <label for="formation-433">4-3-3</label><br>
+                    <input type="checkbox" id="formation-352" name="formations" value="3-5-2"> <label for="formation-352">3-5-2</label><br>
+                    <input type="checkbox" id="formation-other" name="formations" value="Other"> <label for="formation-other">Other (specify):</label>
+                    <input type="text" name="formations-other" class="inline-input">
+                </div>
+            </section>
+
+            <!-- Section 4: Physical Conditioning -->
+            <section>
+                <h2>Section 4: Physical Conditioning</h2>
+                <label>15. Rate your current level in the following physical areas (1 = Low, 5 = High):</label>
+                <div class="rating-group">
+                    <p>Endurance:</p>
+                    <input type="radio" id="endurance-1" name="endurance" value="1" required> <label for="endurance-1">1</label>
+                    <input type="radio" id="endurance-2" name="endurance" value="2"> <label for="endurance-2">2</label>
+                    <input type="radio" id="endurance-3" name="endurance" value="3"> <label for="endurance-3">3</label>
+                    <input type="radio" id="endurance-4" name="endurance" value="4"> <label for="endurance-4">4</label>
+                    <input type="radio" id="endurance-5" name="endurance" value="5"> <label for="endurance-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>Speed:</p>
+                    <input type="radio" id="speed-1" name="speed" value="1" required> <label for="speed-1">1</label>
+                    <input type="radio" id="speed-2" name="speed" value="2"> <label for="speed-2">2</label>
+                    <input type="radio" id="speed-3" name="speed" value="3"> <label for="speed-3">3</label>
+                    <input type="radio" id="speed-4" name="speed" value="4"> <label for="speed-4">4</label>
+                    <input type="radio" id="speed-5" name="speed" value="5"> <label for="speed-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>Strength:</p>
+                    <input type="radio" id="strength-1" name="strength" value="1" required> <label for="strength-1">1</label>
+                    <input type="radio" id="strength-2" name="strength" value="2"> <label for="strength-2">2</label>
+                    <input type="radio" id="strength-3" name="strength" value="3"> <label for="strength-3">3</label>
+                    <input type="radio" id="strength-4" name="strength" value="4"> <label for="strength-4">4</label>
+                    <input type="radio" id="strength-5" name="strength" value="5"> <label for="strength-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>Agility:</p>
+                    <input type="radio" id="agility-1" name="agility" value="1" required> <label for="agility-1">1</label>
+                    <input type="radio" id="agility-2" name="agility" value="2"> <label for="agility-2">2</label>
+                    <input type="radio" id="agility-3" name="agility" value="3"> <label for="agility-3">3</label>
+                    <input type="radio" id="agility-4" name="agility" value="4"> <label for="agility-4">4</label>
+                    <input type="radio" id="agility-5" name="agility" value="5"> <label for="agility-5">5</label>
+                </div>
+
+                <label for="conditioning-frequency">16. How often do you do physical conditioning? (Tick one)</label>
+                <select id="conditioning-frequency" name="conditioning-frequency" required>
+                    <option value="">Select an option</option>
+                    <option value="3+ times per week">3+ times per week</option>
+                    <option value="1-2 times per week">1-2 times per week</option>
+                    <option value="Rarely">Rarely</option>
+                    <option value="Never">Never</option>
+                </select>
+
+                <label>17. What types of conditioning exercises have you done? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="conditioning-sprints" name="conditioning-exercises" value="Sprints"> <label for="conditioning-sprints">Sprints</label><br>
+                    <input type="checkbox" id="conditioning-endurance" name="conditioning-exercises" value="Endurance runs"> <label for="conditioning-endurance">Endurance runs</label><br>
+                    <input type="checkbox" id="conditioning-ladders" name="conditioning-exercises" value="Agility ladders"> <label for="conditioning-ladders">Agility ladders</label><br>
+                    <input type="checkbox" id="conditioning-strength" name="conditioning-exercises" value="Strength training (weights)"> <label for="conditioning-strength">Strength training (weights)</label><br>
+                    <input type="checkbox" id="conditioning-plyometrics" name="conditioning-exercises" value="Plyometrics (e.g., box jumps)"> <label for="conditioning-plyometrics">Plyometrics (e.g., box jumps)</label><br>
+                    <input type="checkbox" id="conditioning-other" name="conditioning-exercises" value="Other"> <label for="conditioning-other">Other (specify):</label>
+                    <input type="text" name="conditioning-exercises-other" class="inline-input">
+                </div>
+
+                <label for="improve-physical">18. Which physical area do you want to improve most? (Tick one)</label>
+                <select id="improve-physical" name="improve-physical" required>
+                    <option value="">Select an option</option>
+                    <option value="Endurance">Endurance</option>
+                    <option value="Speed">Speed</option>
+                    <option value="Strength">Strength</option>
+                    <option value="Agility">Agility</option>
+                </select>
+            </section>
+
+            <!-- Section 5: Mental Skills and Team Dynamics -->
+            <section>
+                <h2>Section 5: Mental Skills and Team Dynamics</h2>
+                <label>19. Rate your ability in the following mental skills (1 = Poor, 5 = Excellent):</label>
+                <div class="rating-group">
+                    <p>Focus and concentration:</p>
+                    <input type="radio" id="focus-1" name="focus" value="1" required> <label for="focus-1">1</label>
+                    <input type="radio" id="focus-2" name="focus" value="2"> <label for="focus-2">2</label>
+                    <input type="radio" id="focus-3" name="focus" value="3"> <label for="focus-3">3</label>
+                    <input type="radio" id="focus-4" name="focus" value="4"> <label for="focus-4">4</label>
+                    <input type="radio" id="focus-5" name="focus" value="5"> <label for="focus-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>Confidence building:</p>
+                    <input type="radio" id="confidence-1" name="confidence" value="1" required> <label for="confidence-1">1</label>
+                    <input type="radio" id="confidence-2" name="confidence" value="2"> <label for="confidence-2">2</label>
+                    <input type="radio" id="confidence-3" name="confidence" value="3"> <label for="confidence-3">3</label>
+                    <input type="radio" id="confidence-4" name="confidence" value="4"> <label for="confidence-4">4</label>
+                    <input type="radio" id="confidence-5" name="confidence" value="5"> <label for="confidence-5">5</label>
+                </div>
+                <div class="rating-group">
+                    <p>Decision-making under pressure:</p>
+                    <input type="radio" id="decision-making-1" name="decision-making" value="1" required> <label for="decision-making-1">1</label>
+                    <input type="radio" id="decision-making-2" name="decision-making" value="2"> <label for="decision-making-2">2</label>
+                    <input type="radio" id="decision-making-3" name="decision-making" value="3"> <label for="decision-making-3">3</label>
+                    <input type="radio" id="decision-making-4" name="decision-making" value="4"> <label for="decision-making-4">4</label>
+                    <input type="radio" id="decision-making-5" name="decision-making" value="5"> <label for="decision-making-5">5</label>
+                </div>
+
+                <label for="mental-preparation">20. Do you use mental preparation techniques? (Tick one)</label>
+                <select id="mental-preparation" name="mental-preparation" required>
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label>21. If yes, what techniques do you use? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="technique-visualization" name="mental-techniques" value="Visualization"> <label for="technique-visualization">Visualization</label><br>
+                    <input type="checkbox" id="technique-breathing" name="mental-techniques" value="Breathing exercises"> <label for="technique-breathing">Breathing exercises</label><br>
+                    <input type="checkbox" id="technique-self-talk" name="mental-techniques" value="Positive self-talk"> <label for="technique-self-talk">Positive self-talk</label><br>
+                    <input type="checkbox" id="technique-other" name="mental-techniques" value="Other"> <label for="technique-other">Other (specify):</label>
+                    <input type="text" name="mental-techniques-other" class="inline-input">
+                </div>
+
+                <label for="team-building">22. Have you participated in team-building exercises? (Tick one)</label>
+                <select id="team-building" name="team-building" required>
+                    <option value="">Select an option</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+
+                <label>23. If yes, which ones? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="team-trust" name="team-exercises" value="Trust exercises"> <label for="team-trust">Trust exercises</label><br>
+                    <input type="checkbox" id="team-problem" name="team-exercises" value="Group problem-solving"> <label for="team-problem">Group problem-solving</label><br>
+                    <input type="checkbox" id="team-communication" name="team-exercises" value="Communication drills"> <label for="team-communication">Communication drills</label><br>
+                    <input type="checkbox" id="team-other" name="team-exercises" value="Other"> <label for="team-other">Other (specify):</label>
+                    <input type="text" name="team-exercises-other" class="inline-input">
+                </div>
+            </section>
+
+            <!-- Section 6: Self-Assessment and Additional Information -->
+            <section>
+                <h2>Section 6: Self-Assessment and Additional Information</h2>
+                <label>24. Which areas do you feel are your strengths? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="strength-technical" name="strengths" value="Technical skills"> <label for="strength-technical">Technical skills</label><br>
+                    <input type="checkbox" id="strength-tactical" name="strengths" value="Tactical understanding"> <label for="strength-tactical">Tactical understanding</label><br>
+                    <input type="checkbox" id="strength-physical" name="strengths" value="Physical conditioning"> <label for="strength-physical">Physical conditioning</label><br>
+                    <input type="checkbox" id="strength-mental" name="strengths" value="Mental toughness"> <label for="strength-mental">Mental toughness</label><br>
+                    <input type="checkbox" id="strength-recovery" name="strengths" value="Recovery and injury prevention"> <label for="strength-recovery">Recovery and injury prevention</label><br>
+                    <input type="checkbox" id="strength-other" name="strengths" value="Other"> <label for="strength-other">Other (specify):</label>
+                    <input type="text" name="strengths-other" class="inline-input">
+                </div>
+
+                <label>25. Which areas do you feel are your weaknesses? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="weakness-technical" name="weaknesses" value="Technical skills"> <label for="weakness-technical">Technical skills</label><br>
+                    <input type="checkbox" id="weakness-tactical" name="weaknesses" value="Tactical understanding"> <label for="weakness-tactical">Tactical understanding</label><br>
+                    <input type="checkbox" id="weakness-physical" name="weaknesses" value="Physical conditioning"> <label for="weakness-physical">Physical conditioning</label><br>
+                    <input type="checkbox" id="weakness-mental" name="weaknesses" value="Mental toughness"> <label for="weakness-mental">Mental toughness</label><br>
+                    <input type="checkbox" id="weakness-recovery" name="weaknesses" value="Recovery and injury prevention"> <label for="weakness-recovery">Recovery and injury prevention</label><br>
+                    <input type="checkbox" id="weakness-other" name="weaknesses" value="Other"> <label for="weakness-other">Other (specify):</label>
+                    <input type="text" name="weaknesses-other" class="inline-input">
+                </div>
+
+                <label for="training-effectiveness">26. How effective was your previous training? (1 = Low, 10 = High)</label>
+                <select id="training-effectiveness" name="training-effectiveness" required>
+                    <option value="">Select an option</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+
+                <label>27. What do you want to improve most in your training? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="improve-technical" name="improvement-areas" value="Technical skills"> <label for="improve-technical">Technical skills</label><br>
+                    <input type="checkbox" id="improve-fitness" name="improvement-areas" value="Fitness"> <label for="improve-fitness">Fitness</label><br>
+                    <input type="checkbox" id="improve-tactical" name="improvement-areas" value="Tactical understanding"> <label for="improve-tactical">Tactical understanding</label><br>
+                    <input type="checkbox" id="improve-mental" name="improvement-areas" value="Mental strength"> <label for="improve-mental">Mental strength</label><br>
+                    <input type="checkbox" id="improve-other" name="improvement-areas" value="Other"> <label for="improve-other">Other (specify):</label>
+                    <input type="text" name="improvement-areas-other" class="inline-input">
+                </div>
+
+                <label for="additional-comments">28. Any additional comments?</label>
+                <textarea id="additional-comments" name="additional-comments" rows="4"></textarea>
+            </section>
+
+            <!-- Section 7: Your Ideal Training Session and Preferences -->
+            <section>
+                <h2>Section 7: Your Ideal Training Session and Preferences</h2>
+                <p>We want to empower you to shape your training experience. Please tell us how you’d like a 90-minute training session to be structured and what specific drills or activities you’d like to focus on. Your preferences will help us create a program that meets your needs.</p>
+
+                <label for="session-structure">29. How do you think a 90-minute training session should go?</label>
+                <textarea id="session-structure" name="session-structure" rows="4" placeholder="Describe your ideal structure (e.g., warm-up, technical drills, tactical drills, physical conditioning, cool-down). You can allocate percentages or list components in order of importance."></textarea>
+
+                <label>30. What would you like to spend your training time doing? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="drill-rondos" name="training-activities" value="Rondos"> <label for="drill-rondos">Rondos (e.g., 4v2, 5v3 for possession and quick passing)</label><br>
+                    <input type="checkbox" id="drill-small-sided" name="training-activities" value="Small-sided games"> <label for="drill-small-sided">Small-sided games (e.g., 3v3, 5v5 to improve decision-making and teamwork)</label><br>
+                    <input type="checkbox" id="drill-dribbling" name="training-activities" value="Dribbling through cones"> <label for="drill-dribbling">Dribbling through cones (for close control and agility)</label><br>
+                    <input type="checkbox" id="drill-passing-triangles" name="training-activities" value="Passing triangles"> <label for="drill-passing-triangles">Passing triangles (to improve passing accuracy and timing)</label><br>
+                    <input type="checkbox" id="drill-shooting-accuracy" name="training-activities" value="Shooting accuracy drills"> <label for="drill-shooting-accuracy">Shooting accuracy drills (e.g., targeting specific areas of the goal)</label><br>
+                    <input type="checkbox" id="drill-first-touch" name="training-activities" value="First touch control drills"> <label for="drill-first-touch">First touch control drills (e.g., receiving passes under pressure)</label><br>
+                    <input type="checkbox" id="drill-defensive-organization" name="training-activities" value="Defensive organization drills"> <label for="drill-defensive-organization">Defensive organization drills (e.g., positioning and communication)</label><br>
+                    <input type="checkbox" id="drill-attacking-patterns" name="training-activities" value="Attacking patterns"> <label for="drill-attacking-patterns">Attacking patterns (e.g., rehearsing coordinated movements)</label><br>
+                    <input type="checkbox" id="drill-set-pieces" name="training-activities" value="Set piece routines"> <label for="drill-set-pieces">Set piece routines (e.g., corners, free kicks)</label><br>
+                    <input type="checkbox" id="drill-pressing" name="training-activities" value="Pressing and counter-pressing exercises"> <label for="drill-pressing">Pressing and counter-pressing exercises (for high-intensity defending)</label><br>
+                    <input type="checkbox" id="drill-positional-play" name="training-activities" value="Positional play drills"> <label for="drill-positional-play">Positional play drills (to improve spatial awareness and movement)</label><br>
+                    <input type="checkbox" id="drill-counter-attacking" name="training-activities" value="Counter-attacking simulations"> <label for="drill-counter-attacking">Counter-attacking simulations (for quick transitions from defense to attack)</label><br>
+                    <input type="checkbox" id="drill-sprint-mechanics" name="training-activities" value="Sprint mechanics drills"> <label for="drill-sprint-mechanics">Sprint mechanics drills (to improve acceleration and running technique)</label><br>
+                    <input type="checkbox" id="drill-agility-ladder" name="training-activities" value="Agility ladder exercises"> <label for="drill-agility-ladder">Agility ladder exercises (for footwork and coordination)</label><br>
+                    <input type="checkbox" id="drill-strength-training" name="training-activities" value="Strength training circuits"> <label for="drill-strength-training">Strength training circuits (e.g., bodyweight exercises or weights)</label><br>
+                    <input type="checkbox" id="drill-plyometrics" name="training-activities" value="Plyometric exercises"> <label for="drill-plyometrics">Plyometric exercises (e.g., box jumps, depth jumps for explosive power)</label><br>
+                    <input type="checkbox" id="drill-endurance-runs" name="training-activities" value="Endurance runs"> <label for="drill-endurance-runs">Endurance runs (e.g., long-distance or interval running)</label><br>
+                    <input type="checkbox" id="drill-decision-making" name="training-activities" value="Decision-making games"> <label for="drill-decision-making">Decision-making games (e.g., small-sided games with constraints)</label><br>
+                    <input type="checkbox" id="drill-visualization" name="training-activities" value="Visualization exercises"> <label for="drill-visualization">Visualization exercises (for mental preparation and focus)</label><br>
+                    <input type="checkbox" id="drill-team-building" name="training-activities" value="Team-building activities"> <label for="drill-team-building">Team-building activities (e.g., trust exercises, communication drills)</label><br>
+                    <input type="checkbox" id="drill-one-on-one" name="training-activities" value="One-on-one duels"> <label for="drill-one-on-one">One-on-one duels (to improve individual defending and attacking skills)</label><br>
+                    <input type="checkbox" id="drill-crossing-finishing" name="training-activities" value="Crossing and finishing drills"> <label for="drill-crossing-finishing">Crossing and finishing drills (e.g., wing play and goal scoring)</label><br>
+                    <input type="checkbox" id="drill-other" name="training-activities" value="Other"> <label for="drill-other">Other (specify):</label>
+                    <input type="text" name="training-activities-other" class="inline-input">
+                </div>
+
+                <label for="top-drills">31. From the list above, which 3 drills or activities are most important to you? (List your top 3)</label>
+                <textarea id="top-drills" name="top-drills" rows="3" placeholder="1. _________________________
+2. _________________________
+3. _________________________"></textarea>
+
+                <label for="suggested-drills">32. Is there any specific drill or training method not listed that you’d like to suggest?</label>
+                <textarea id="suggested-drills" name="suggested-drills" rows="4"></textarea>
+            </section>
+
+            <!-- Section 8: Technology and Accountability in Training -->
+            <section>
+                <h2>Section 8: Technology and Accountability in Training</h2>
+                <p>We use technology like the VEO camera to record matches and provide performance stats (e.g., distance covered, passes completed). We’d like to know your thoughts on how video and data can help you improve and what you see as your responsibilities in your development.</p>
+
+                <label for="video-recording">33. What do you think of video recording your training or matches?</label>
+                <select id="video-recording" name="video-recording" required>
+                    <option value="">Select an option</option>
+                    <option value="Great tool to improve">I think it’s a great tool to improve</option>
+                    <option value="Could be helpful but not sure">It could be helpful but I’m not sure how</option>
+                    <option value="Not useful for me">I don’t think it’s useful for me</option>
+                </select>
+                <label for="video-recording-reason">Why do you feel this way? (Optional)</label>
+                <textarea id="video-recording-reason" name="video-recording-reason" rows="3"></textarea>
+
+                <label>34. How do you think replays can be used to help you get better? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="replay-technique" name="replay-use" value="Spotting mistakes in technique"> <label for="replay-technique">Spotting mistakes in my technique (e.g., passing, shooting)</label><br>
+                    <input type="checkbox" id="replay-positioning" name="replay-use" value="Understanding positioning and decisions"> <label for="replay-positioning">Understanding my positioning and decisions</label><br>
+                    <input type="checkbox" id="replay-teamwork" name="replay-use" value="Seeing how I work with teammates"> <label for="replay-teamwork">Seeing how I work with teammates</label><br>
+                    <input type="checkbox" id="replay-strengths" name="replay-use" value="Learning from what I did well"> <label for="replay-strengths">Learning from what I did well</label><br>
+                    <input type="checkbox" id="replay-other" name="replay-use" value="Other"> <label for="replay-other">Other (specify):</label>
+                    <input type="text" name="replay-use-other" class="inline-input">
+                </div>
+
+                <label for="veo-accountability">35. Do you think the VEO camera and its stats will hold you accountable for your performance?</label>
+                <select id="veo-accountability" name="veo-accountability" required>
+                    <option value="">Select an option</option>
+                    <option value="Yes, it will push me to stay consistent">Yes, it will push me to stay consistent</option>
+                    <option value="Yes, it will show me where I need to improve">Yes, it will show me where I need to improve</option>
+                    <option value="No, I don’t think it will change how I play">No, I don’t think it will change how I play</option>
+                    <option value="Unsure">Unsure</option>
+                </select>
+
+                <label>36. What do you think is your responsibility in improving as a player? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="responsibility-effort" name="player-responsibility" value="Putting in effort during training"> <label for="responsibility-effort">Putting in effort during training</label><br>
+                    <input type="checkbox" id="responsibility-skills" name="player-responsibility" value="Working on skills outside of team sessions"> <label for="responsibility-skills">Working on skills outside of team sessions</label><br>
+                    <input type="checkbox" id="responsibility-feedback" name="player-responsibility" value="Asking for feedback from coaches"> <label for="responsibility-feedback">Asking for feedback from coaches</label><br>
+                    <input type="checkbox" id="responsibility-goals" name="player-responsibility" value="Setting goals for myself"> <label for="responsibility-goals">Setting goals for myself</label><br>
+                    <input type="checkbox" id="responsibility-watching" name="player-responsibility" value="Watching games to learn"> <label for="responsibility-watching">Watching games to learn</label><br>
+                    <input type="checkbox" id="responsibility-other" name="player-responsibility" value="Other"> <label for="responsibility-other">Other (specify):</label>
+                    <input type="text" name="player-responsibility-other" class="inline-input">
+                </div>
+
+                <label>37. What do you think is your coach’s responsibility in your development? (Tick as many as apply)</label>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="coach-feedback" name="coach-responsibility" value="Giving me clear feedback"> <label for="coach-feedback">Giving me clear feedback</label><br>
+                    <input type="checkbox" id="coach-planning" name="coach-responsibility" value="Planning good training sessions"> <label for="coach-planning">Planning good training sessions</label><br>
+                    <input type="checkbox" id="coach-understanding" name="coach-responsibility" value="Helping me understand my strengths and weaknesses"> <label for="coach-understanding">Helping me understand my strengths and weaknesses</label><br>
+                    <input type="checkbox" id="coach-tools" name="coach-responsibility" value="Using tools like video to show me what to work on"> <label for="coach-tools">Using tools like video to show me what to work on</label><br>
+                    <input type="checkbox" id="coach-motivation" name="coach-responsibility" value="Keeping me motivated"> <label for="coach-motivation">Keeping me motivated</label><br>
+                    <input type="checkbox" id="coach-other" name="coach-responsibility" value="Other"> <label for="coach-other">Other (specify):</label>
+                    <input type="text" name="coach-responsibility-other" class="inline-input">
+                </div>
+            </section>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 </body>
 </html>
